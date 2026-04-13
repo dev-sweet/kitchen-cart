@@ -703,3 +703,27 @@ Stage Summary:
 - All routes verified: homepage, shop, product detail, cart, checkout, auth, account pages, admin panel, static pages (about, contact, faq, blog, privacy, terms)
 - Footer component already implemented with 4-column spec (brand, company links, purchase info, newsletter with social icons, payment method badges)
 - KitchenCart eCommerce website is fully functional and production-ready
+
+---
+Task ID: header-footer-links
+Agent: Main Agent
+Task: Wire Header and Footer into layout, fix broken links, add navigation links
+
+Work Log:
+- **Critical fix**: Header and Footer components existed but were never imported or rendered in layout.tsx
+- Added `import Header` and `import Footer` to layout.tsx
+- Wrapped children in `<main className="flex-1">` with Header above and Footer below for sticky footer behavior
+- Fixed Footer broken links: replaced non-existent pages (/payment-methods, /shipping, /returns, /track-order) with existing routes (/shop, /faq#payment, /faq#shipping, /faq#returns)
+- Reordered Footer company links: About Us, Blog, Contact Us, Privacy Policy, Terms & Conditions
+- Added Blog link to Header desktop navigation (Home, Shop, Blog, Categories, About, Contact, FAQ)
+- Added FAQ link to Header desktop navigation
+- Added Blog and FAQ links to Header mobile menu
+- Verified all 11+ page routes return HTTP 200 with Header/Footer rendering correctly
+- Zero lint errors
+
+Stage Summary:
+- Header now renders globally with full navigation: Home, Shop, Blog, Categories (dropdown with 10 categories), About, Contact, FAQ
+- Footer renders globally with 4-column layout: Brand+Social, Company Info (5 links), Purchase Info (5 links), Newsletter signup
+- Footer bottom bar with copyright and payment method badges (Visa, Mastercard, PayPal, Stripe, Apple Pay)
+- All navigation links point to existing, working pages
+- Sticky footer: Footer sticks to bottom on short pages, pushes down on long pages

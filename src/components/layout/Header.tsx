@@ -454,6 +454,7 @@ export default function Header() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/shop", label: "Shop" },
+    { href: "/blog", label: "Blog" },
   ];
 
   const isActive = (href: string) => {
@@ -548,6 +549,7 @@ export default function Header() {
               {[
                 { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
+                { href: "/faq", label: "FAQ" },
               ].map((link) => (
                 <Link
                   key={link.href}
@@ -777,6 +779,7 @@ export default function Header() {
               {[
                 { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
+                { href: "/faq", label: "FAQ" },
               ].map((link) => (
                 <MobileNavLink
                   key={link.href}

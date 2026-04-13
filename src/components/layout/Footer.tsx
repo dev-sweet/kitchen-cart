@@ -177,19 +177,19 @@ function NewsletterColumn() {
 
 export default function Footer() {
   const companyLinks = [
-    { href: "/privacy", label: "Privacy Policy" },
-    { href: "/terms", label: "Terms & Conditions" },
-    { href: "/contact", label: "Contact Us" },
     { href: "/about", label: "About Us" },
     { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact Us" },
+    { href: "/privacy", label: "Privacy Policy" },
+    { href: "/terms", label: "Terms & Conditions" },
   ];
 
   const purchaseLinks = [
+    { href: "/shop", label: "Shop All Products" },
     { href: "/faq", label: "FAQ" },
-    { href: "/payment-methods", label: "Payment Methods" },
-    { href: "/shipping", label: "Shipping & Delivery" },
-    { href: "/returns", label: "Refunds & Returns" },
-    { href: "/track-order", label: "Order Tracking" },
+    { href: "/faq#payment", label: "Payment Methods" },
+    { href: "/faq#shipping", label: "Shipping & Delivery" },
+    { href: "/faq#returns", label: "Refunds & Returns" },
   ];
 
   const socialLinks = [
