@@ -155,16 +155,7 @@ export default function LoginPage() {
               </Button>
             </form>
 
-            {/* Admin hint */}
-            <div className="mt-6 rounded-lg bg-orange-50 border border-orange-200 p-3">
-              <p className="text-xs text-orange-800 font-medium mb-1">Demo Admin Access</p>
-              <p className="text-xs text-orange-700 font-mono">
-                Email: admin@kitchencart.com
-              </p>
-              <p className="text-xs text-orange-700 font-mono">
-                Password: admin123
-              </p>
-            </div>
+
 
             {/* Register link */}
             <div className="mt-6 text-center text-sm">

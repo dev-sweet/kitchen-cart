@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     // Calculate shipping (free over $50)
-    const shipping = subtotal >= 50 ? 0 : 9.99;
+    const shipping = subtotal >= 50 ? 0 : 5.99;
 
     // Calculate tax (8%)
     const tax = subtotal * 0.08;

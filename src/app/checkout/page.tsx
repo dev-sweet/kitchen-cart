@@ -284,7 +284,7 @@ export default function CheckoutPage() {
             </Button>
             <p className="text-sm text-muted-foreground">
               Don&apos;t have an account?{' '}
-              <Link href="/" className="text-primary hover:underline font-medium">
+              <Link href="/auth/register" className="text-primary hover:underline font-medium">
                 Sign up here
               </Link>
             </p>
