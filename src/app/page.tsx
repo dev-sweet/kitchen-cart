@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/image";
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import {
   ChevronLeft, ChevronRight, ArrowRight, Truck, RotateCcw, ShieldCheck, Headphones,
   ChefHat, Cookie, Wrench, Zap, Package, Flame, UtensilsCrossed, Coffee,
@@ -331,20 +332,14 @@ function Newsletter() {
 
 /* 9. Recently Viewed */
 function RecentlyViewed() {
-  const [items, setItems] = useState<{ id: string; name: string; slug: string; price: number; image: string }[]>([]);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
+  const [items, setItems] = useState<{ id: string; name: string; slug: string; price: number; image: string }[]>(() => {
+    if (typeof window === "undefined") return [];
     try {
       const stored = localStorage.getItem("kitchencart-recently-viewed");
-      if (stored) { const parsed = JSON.parse(stored); if (Array.isArray(parsed)) setItems(parsed.slice(0, 10)); }
+      if (stored) { const parsed = JSON.parse(stored); if (Array.isArray(parsed)) return parsed.slice(0, 10); }
     } catch {}
-  }, [mounted]);
+    return [];
+  });
 
   if (items.length === 0) return null;
   return (
