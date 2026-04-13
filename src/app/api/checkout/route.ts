@@ -2,6 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { getCurrentUser, generateOrderId } from "@/lib/helpers";
 
+interface CheckoutItem {
+  productId: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image?: string;
+  variant?: string;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const user = await getCurrentUser();
@@ -10,45 +19,40 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { shippingAddress, notes, couponCode } = body;
+    const { items, shippingAddress, paymentMethod, cardLast4, notes, couponCode } = body as {
+      items: CheckoutItem[];
+      shippingAddress: Record<string, string>;
+      paymentMethod: string;
+      cardLast4?: string;
+      notes?: string;
+      couponCode?: string;
+    };
 
-    // Get user's cart items
-    const cartItems = await db.cartItem.findMany({
-      where: { userId: user.id },
-      include: {
-        product: true,
-        variant: true,
-      },
-    });
-
-    if (cartItems.length === 0) {
-      return NextResponse.json(
-        { error: "Cart is empty" },
-        { status: 400 }
-      );
+    if (!items || items.length === 0) {
+      return NextResponse.json({ error: "Cart is empty" }, { status: 400 });
     }
 
-    // Validate stock for each item
-    for (const item of cartItems) {
-      const availableStock = item.variant
-        ? item.variant.stock
-        : item.product.stock;
-      if (availableStock < item.quantity) {
+    // Validate stock for each item by looking up the product from DB
+    for (const item of items) {
+      const product = await db.product.findUnique({
+        where: { id: item.productId },
+      });
+      if (!product) {
         return NextResponse.json(
-          {
-            error: `Insufficient stock for ${item.product.name}. Available: ${availableStock}`,
-          },
+          { error: `Product "${item.name}" not found` },
+          { status: 400 }
+        );
+      }
+      if (product.stock < item.quantity) {
+        return NextResponse.json(
+          { error: `Insufficient stock for ${product.name}. Available: ${product.stock}` },
           { status: 400 }
         );
       }
     }
 
     // Calculate subtotal
-    const subtotal = cartItems.reduce((sum, item) => {
-      const basePrice = item.product.price;
-      const modifier = item.variant?.priceModifier || 0;
-      return sum + (basePrice + modifier) * item.quantity;
-    }, 0);
+    const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     // Calculate shipping (free over $50)
     const shipping = subtotal >= 50 ? 0 : 9.99;
@@ -74,7 +78,6 @@ export async function POST(request: NextRequest) {
           } else if (coupon.type === "percentage") {
             discount = subtotal * (coupon.value / 100);
           }
-          // Increment coupon usage
           await db.coupon.update({
             where: { id: coupon.id },
             data: { usedCount: { increment: 1 } },
@@ -84,9 +87,16 @@ export async function POST(request: NextRequest) {
     }
 
     const total = subtotal + shipping + tax - discount;
-
-    // Generate order ID
     const orderId = generateOrderId();
+
+    // Determine final payment method string
+    const finalPaymentMethod = paymentMethod === "card" ? "card" : "cod";
+    const orderNotes = [
+      notes || "",
+      paymentMethod === "card" && cardLast4 ? `Card ending in ****${cardLast4}` : "",
+    ]
+      .filter(Boolean)
+      .join(" | ");
 
     // Create order with order items in a transaction
     const order = await db.$transaction(async (tx) => {
@@ -99,31 +109,30 @@ export async function POST(request: NextRequest) {
           tax,
           discount,
           total,
-          paymentMethod: "cod",
-          shippingAddress: shippingAddress || null,
-          notes: notes || null,
+          paymentMethod: finalPaymentMethod,
+          shippingAddress: shippingAddress ? JSON.stringify(shippingAddress) : null,
+          notes: orderNotes || null,
         },
       });
 
       await tx.orderItem.createMany({
-        data: cartItems.map((item) => {
-          const productImages = JSON.parse(item.product.images) as string[];
-          return {
-            orderId: newOrder.id,
-            productId: item.productId,
-            variantId: item.variantId || null,
-            quantity: item.quantity,
-            price: item.product.price + (item.variant?.priceModifier || 0),
-            productName: item.product.name,
-            productImage: productImages.length > 0 ? productImages[0] : null,
-          };
-        }),
+        data: items.map((item) => ({
+          orderId: newOrder.id,
+          productId: item.productId,
+          quantity: item.quantity,
+          price: item.price,
+          productName: item.name,
+          productImage: item.image || null,
+        })),
       });
 
-      // Clear the user's cart
-      await tx.cartItem.deleteMany({
-        where: { userId: user.id },
-      });
+      // Deduct stock for each product
+      for (const item of items) {
+        await tx.product.update({
+          where: { id: item.productId },
+          data: { stock: { decrement: item.quantity } },
+        });
+      }
 
       return newOrder;
     });

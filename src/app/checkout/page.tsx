@@ -50,6 +50,13 @@ interface ShippingAddress {
   country: string;
 }
 
+interface CardInfo {
+  holderName: string;
+  number: string;
+  expiry: string;
+  cvv: string;
+}
+
 const defaultAddress: ShippingAddress = {
   fullName: '',
   email: '',
@@ -61,6 +68,22 @@ const defaultAddress: ShippingAddress = {
   zip: '',
   country: 'United States',
 };
+
+const defaultCardInfo: CardInfo = {
+  holderName: '',
+  number: '',
+  expiry: '',
+  cvv: '',
+};
+
+function validateCardInfo(card: CardInfo): string | null {
+  const digitsOnly = card.number.replace(/\s/g, '');
+  if (!card.holderName.trim()) return 'Cardholder name is required';
+  if (!/^\d{13,19}$/.test(digitsOnly)) return 'Card number must be 13-19 digits';
+  if (!/^\d{2}\/\d{2}$/.test(card.expiry)) return 'Expiry must be in MM/YY format';
+  if (!/^\d{3,4}$/.test(card.cvv)) return 'CVV must be 3-4 digits';
+  return null;
+}
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -85,6 +108,8 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState('cod');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [addressErrors, setAddressErrors] = useState<Partial<ShippingAddress>>({});
+  const [cardInfo, setCardInfo] = useState<CardInfo>(defaultCardInfo);
+  const [cardErrors, setCardErrors] = useState<Partial<CardInfo>>({});
 
   // Pre-fill email and name from session using useMemo
   const prefilledAddress = session?.user
@@ -134,6 +159,13 @@ export default function CheckoutPage() {
     }
   };
 
+  const handleCardChange = (field: keyof CardInfo, value: string) => {
+    setCardInfo((prev) => ({ ...prev, [field]: value }));
+    if (cardErrors[field]) {
+      setCardErrors((prev) => ({ ...prev, [field]: undefined }));
+    }
+  };
+
   const handleSubmit = async () => {
     if (!validateAddress()) {
       toast.error('Please fill in all required fields');
@@ -145,6 +177,16 @@ export default function CheckoutPage() {
       return;
     }
 
+    // Validate card info if card payment
+    if (paymentMethod === 'card') {
+      const cardError = validateCardInfo(cardInfo);
+      if (cardError) {
+        toast.error(cardError);
+        setCardErrors({ number: cardError });
+        return;
+      }
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -152,7 +194,19 @@ export default function CheckoutPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          items: items.map((item) => ({
+            productId: item.productId,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            image: item.image,
+          })),
           shippingAddress: prefilledAddress,
+          paymentMethod: paymentMethod,
+          cardLast4:
+            paymentMethod === 'card'
+              ? cardInfo.number.replace(/\s/g, '').slice(-4)
+              : undefined,
           notes: notes.trim() || undefined,
           couponCode: couponCode || undefined,
         }),
@@ -508,7 +562,7 @@ export default function CheckoutPage() {
             </CardHeader>
             <CardContent>
               <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod} className="space-y-3">
-                {/* Cash on Delivery - Primary/Highlighted */}
+                {/* Cash on Delivery */}
                 <label
                   htmlFor="cod"
                   className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
@@ -535,7 +589,7 @@ export default function CheckoutPage() {
                   <ShieldCheck className="w-5 h-5 text-green-500 flex-shrink-0" />
                 </label>
 
-                {/* Card Payment - Placeholder */}
+                {/* Card Payment */}
                 <label
                   htmlFor="card"
                   className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
@@ -549,26 +603,117 @@ export default function CheckoutPage() {
                     <CreditCard className="w-6 h-6 text-blue-600" />
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <p className="font-semibold">Credit / Debit Card</p>
-                      <span className="text-xs bg-gray-100 text-muted-foreground px-2 py-0.5 rounded-full font-medium">
-                        Coming Soon
-                      </span>
-                    </div>
+                    <p className="font-semibold">Credit / Debit Card</p>
                     <p className="text-sm text-muted-foreground">
-                      Pay securely with Visa, Mastercard, or other cards via Stripe.
+                      Pay securely with Visa, Mastercard, or other cards.
                     </p>
                   </div>
+                  <Lock className="w-5 h-5 text-muted-foreground flex-shrink-0" />
                 </label>
               </RadioGroup>
 
+              {/* Card Info Form */}
               {paymentMethod === 'card' && (
-                <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg">
-                  <p className="text-sm text-amber-700 flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4" />
-                    Online card payments will be available soon. Please select Cash on Delivery to
-                    continue.
-                  </p>
+                <div className="mt-4">
+                  <Card className="border-dashed">
+                    <CardHeader className="pb-3">
+                      <CardTitle className="text-sm font-medium flex items-center gap-2">
+                        <Lock className="w-4 h-4 text-muted-foreground" />
+                        Card Details
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      {/* Cardholder Name */}
+                      <div className="space-y-2">
+                        <Label htmlFor="cardHolderName">
+                          Cardholder Name <span className="text-red-500">*</span>
+                        </Label>
+                        <Input
+                          id="cardHolderName"
+                          placeholder="John Doe"
+                          value={cardInfo.holderName}
+                          onChange={(e) => handleCardChange('holderName', e.target.value)}
+                          data-error={!!cardErrors.holderName}
+                          className={cardErrors.holderName ? 'border-red-500' : ''}
+                        />
+                        {cardErrors.holderName && (
+                          <p className="text-xs text-red-500 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            {cardErrors.holderName}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Card Number */}
+                      <div className="space-y-2">
+                        <Label htmlFor="cardNumber">
+                          Card Number <span className="text-red-500">*</span>
+                        </Label>
+                        <Input
+                          id="cardNumber"
+                          placeholder="1234 5678 9012 3456"
+                          value={cardInfo.number}
+                          onChange={(e) => handleCardChange('number', e.target.value)}
+                          data-error={!!cardErrors.number}
+                          className={cardErrors.number ? 'border-red-500' : ''}
+                        />
+                        {cardErrors.number && (
+                          <p className="text-xs text-red-500 flex items-center gap-1">
+                            <AlertCircle className="w-3 h-3" />
+                            {cardErrors.number}
+                          </p>
+                        )}
+                      </div>
+
+                      {/* Expiry & CVV */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="cardExpiry">
+                            Expiry Date <span className="text-red-500">*</span>
+                          </Label>
+                          <Input
+                            id="cardExpiry"
+                            placeholder="MM/YY"
+                            value={cardInfo.expiry}
+                            onChange={(e) => handleCardChange('expiry', e.target.value)}
+                            data-error={!!cardErrors.expiry}
+                            className={cardErrors.expiry ? 'border-red-500' : ''}
+                          />
+                          {cardErrors.expiry && (
+                            <p className="text-xs text-red-500 flex items-center gap-1">
+                              <AlertCircle className="w-3 h-3" />
+                              {cardErrors.expiry}
+                            </p>
+                          )}
+                        </div>
+                        <div className="space-y-2">
+                          <Label htmlFor="cardCvv">
+                            CVV <span className="text-red-500">*</span>
+                          </Label>
+                          <Input
+                            id="cardCvv"
+                            placeholder="123"
+                            type="password"
+                            value={cardInfo.cvv}
+                            onChange={(e) => handleCardChange('cvv', e.target.value)}
+                            data-error={!!cardErrors.cvv}
+                            className={cardErrors.cvv ? 'border-red-500' : ''}
+                          />
+                          {cardErrors.cvv && (
+                            <p className="text-xs text-red-500 flex items-center gap-1">
+                              <AlertCircle className="w-3 h-3" />
+                              {cardErrors.cvv}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-muted-foreground flex items-center gap-1">
+                        <ShieldCheck className="w-3 h-3" />
+                        Your card information is encrypted and secure.
+                      </p>
+                    </CardContent>
+                  </Card>
                 </div>
               )}
             </CardContent>
@@ -700,7 +845,7 @@ export default function CheckoutPage() {
                   ) : (
                     <>
                       <CreditCard className="w-4 h-4 text-blue-600" />
-                      Credit Card
+                      Card ending in {cardInfo.number.replace(/\s/g, '').slice(-4) || '••••'}
                     </>
                   )}
                 </span>
@@ -711,7 +856,7 @@ export default function CheckoutPage() {
                 size="lg"
                 className="w-full bg-primary hover:bg-primary/90 text-white h-12 text-base font-semibold"
                 onClick={handleSubmit}
-                disabled={isSubmitting || paymentMethod === 'card'}
+                disabled={isSubmitting}
               >
                 {isSubmitting ? (
                   <>
@@ -725,12 +870,6 @@ export default function CheckoutPage() {
                   </>
                 )}
               </Button>
-
-              {paymentMethod === 'card' && (
-                <p className="text-xs text-center text-amber-600">
-                  Card payments are not available yet. Please use Cash on Delivery.
-                </p>
-              )}
 
               {/* Trust indicators */}
               <div className="flex items-center justify-center gap-4 pt-2 text-xs text-muted-foreground">
