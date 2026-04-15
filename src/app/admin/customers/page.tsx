@@ -48,7 +48,7 @@ export default function AdminCustomersPage() {
     return () => { active = false; };
   }, [session]);
 
-  const filtered = customers.filter(
+  const filtered = customers?.filter(
     (c) =>
       c.name?.toLowerCase().includes(search.toLowerCase()) ||
       c.email.toLowerCase().includes(search.toLowerCase())
@@ -86,7 +86,7 @@ export default function AdminCustomersPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold">Customers</h1>
-          <p className="text-sm text-muted-foreground">{customers.length} total customers</p>
+          <p className="text-sm text-muted-foreground">{customers?.length} total customers</p>
         </div>
 
         <div className="mb-6">

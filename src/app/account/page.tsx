@@ -138,7 +138,7 @@ export default function AccountPage() {
       icon: Package,
       href: "/account/orders",
       count: profile?.orderCount || 0,
-      color: "text-orange-600 bg-orange-50",
+      color: "text-orange-600 bg-primary/10",
     },
     {
       title: "Wishlist",
@@ -291,7 +291,7 @@ export default function AccountPage() {
                       <Link
                         key={order.id}
                         href={`/account/orders/${order.id}`}
-                        className="flex items-center justify-between p-3 rounded-lg border hover:border-primary/30 hover:bg-orange-50/30 transition-all group"
+                        className="flex items-center justify-between p-3 rounded-lg border hover:border-primary/30 hover:bg-primary/5 transition-all group"
                       >
                         <div className="flex items-center gap-3 min-w-0">
                           <div className="p-2 rounded-lg bg-muted/50">

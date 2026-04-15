@@ -211,7 +211,7 @@ export default function AdminDashboardPage() {
       change: "+2.0%",
       changeLabel: "this month",
       color: "text-[#E65100]",
-      bg: "bg-orange-50",
+      bg: "bg-primary/10",
     },
     {
       title: "Total Customers",

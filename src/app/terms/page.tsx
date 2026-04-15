@@ -3,7 +3,7 @@ import { FileText } from "lucide-react";
 export default function TermsPage() {
   return (
     <div className="min-h-screen">
-      <section className="bg-gradient-to-br from-orange-50 to-orange-100 py-12">
+      <section className="bg-gradient-to-br from-primary/10 to-primary/20 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <FileText className="h-10 w-10 text-primary mx-auto mb-3" />
           <h1 className="text-3xl md:text-4xl font-bold">Terms of Service</h1>

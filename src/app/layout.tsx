@@ -17,9 +17,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KitchenCart - Everything for Your Kitchen",
+  title: "LaventerPrise - Online Store",
   description: "Premium kitchen tools, cookware, gadgets and accessories. Shop baking tools, cutlery, electronics, storage solutions and more at great prices.",
   keywords: ["kitchen", "cookware", "bakeware", "kitchen tools", "kitchen gadgets", "cutlery", "kitchen electronics"],
+  icons: {
+    icon: "/favicon.png", 
+  },
 };
 
 export default function RootLayout({

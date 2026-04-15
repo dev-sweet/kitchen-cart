@@ -52,7 +52,7 @@ const categoryIconMap: Record<string, React.ElementType> = {
 
 const heroSlides = [
   {
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&h=600&fit=crop",
+    image: "/bg/1.png",
     title: "Premium Kitchen Essentials",
     subtitle: "Elevate your cooking with professional-grade tools and equipment",
     primaryCta: { label: "Shop Now", href: "/shop" },
@@ -60,7 +60,7 @@ const heroSlides = [
     badge: "New Arrivals",
   },
   {
-    image: "https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=1400&h=600&fit=crop",
+    image: "/bg/2.png",
     title: "Master the Art of Baking",
     subtitle: "From mixing bowls to precision scales — everything a baker needs",
     primaryCta: { label: "Shop Now", href: "/shop" },
@@ -68,7 +68,7 @@ const heroSlides = [
     badge: "Best Sellers",
   },
   {
-    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1400&h=600&fit=crop",
+    image: "/bg/3.png",
     title: "Smart Kitchen Electronics",
     subtitle: "Discover innovative appliances that make cooking effortless",
     primaryCta: { label: "Shop Now", href: "/shop" },
@@ -112,7 +112,7 @@ function HeroBanner() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
         </div>
       ))}
-      <div className="relative z-20 h-full flex items-center">
+      <div className="relative z-20 h-full flex items-center bg-[#000000]/40">
         <SectionWrap className="w-full">
           <div className="max-w-xl animate-[fadeInUp]">
             <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm mb-4 text-sm">{slide.badge}</Badge>
@@ -152,7 +152,7 @@ function CategoryGrid({ categories }: { categories: Category[] }) {
           const Icon = getIcon(cat.name);
           return (
             <Link key={cat.id} href={`/shop?category=${cat.slug}`} className="group bg-card rounded-xl border border-border p-4 md:p-5 flex flex-col items-center gap-3 text-center transition-all duration-300 hover:scale-[1.03] hover:shadow-md hover:border-primary/40">
-              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-orange-50 flex items-center justify-center group-hover:bg-primary/10 transition-colors"><Icon className="w-7 h-7 md:w-8 md:h-8 text-primary" /></div>
+              <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/10 transition-colors"><Icon className="w-7 h-7 md:w-8 md:h-8 text-primary" /></div>
               <div>
                 <h3 className="font-semibold text-sm md:text-base group-hover:text-primary transition-colors">{cat.name}</h3>
                 <p className="text-xs text-muted-foreground mt-0.5">{cat._count.products} products</p>
@@ -194,7 +194,7 @@ function FeaturedProducts({ products }: { products: Product[] }) {
 /* 4. Promo Banner */
 function PromoBanner() {
   return (
-    <div className="relative overflow-hidden bg-gradient-to-r from-[#E65100] via-[#FF8F00] to-[#FFA726]">
+    <div className="relative overflow-hidden bg-gradient-to-r from-[#48C6EF] to-[#2D6AD4]">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_rgba(255,255,255,0.1)_0%,_transparent_70%)]" />
       <SectionWrap className="relative z-10 py-10 md:py-14">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
@@ -205,7 +205,7 @@ function PromoBanner() {
               <p className="text-white/80 mt-1 text-sm md:text-base">Enjoy complimentary shipping on all qualifying orders. No coupon needed!</p>
             </div>
           </div>
-          <Button asChild size="lg" className="bg-white text-[#E65100] hover:bg-white/90 font-semibold rounded-lg shadow-lg flex-shrink-0"><Link href="/shop">Shop Now <ArrowRight className="ml-2 w-4 h-4" /></Link></Button>
+          <Button asChild size="lg" className="bg-white text-[#2a5fb5] hover:bg-white/90 font-semibold rounded-lg shadow-lg flex-shrink-0"><Link href="/shop">Shop Now <ArrowRight className="ml-2 w-4 h-4" /></Link></Button>
         </div>
       </SectionWrap>
     </div>
@@ -280,7 +280,7 @@ function TrustBadges() {
           const Icon = b.icon;
           return (
             <div key={b.title} className="flex flex-col items-center text-center gap-3">
-              <div className="w-14 h-14 rounded-full bg-orange-50 flex items-center justify-center"><Icon className="w-7 h-7 text-primary" /></div>
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center"><Icon className="w-7 h-7 text-primary" /></div>
               <div><h4 className="font-semibold text-sm md:text-base">{b.title}</h4><p className="text-muted-foreground text-xs md:text-sm mt-0.5">{b.desc}</p></div>
             </div>
           );

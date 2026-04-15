@@ -267,7 +267,7 @@ export default function CheckoutPage() {
 
         <Card className="max-w-lg mx-auto mt-12">
           <CardContent className="p-8 text-center">
-            <div className="w-20 h-20 rounded-full bg-orange-50 flex items-center justify-center mx-auto mb-6">
+            <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
               <Lock className="w-10 h-10 text-primary" />
             </div>
             <h2 className="text-2xl font-bold mb-3">Sign in to Checkout</h2>
@@ -567,7 +567,7 @@ export default function CheckoutPage() {
                   htmlFor="cod"
                   className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
                     paymentMethod === 'cod'
-                      ? 'border-primary bg-orange-50/50 shadow-sm'
+                      ? 'border-primary bg-primary/10/50 shadow-sm'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >
@@ -594,7 +594,7 @@ export default function CheckoutPage() {
                   htmlFor="card"
                   className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${
                     paymentMethod === 'card'
-                      ? 'border-primary bg-orange-50/50 shadow-sm'
+                      ? 'border-primary bg-primary/10/50 shadow-sm'
                       : 'border-gray-200 hover:border-gray-300'
                   }`}
                 >

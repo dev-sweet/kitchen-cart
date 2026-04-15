@@ -254,7 +254,7 @@ A well-equipped kitchen benefits from having multiple materials. Start with a go
 function NotFoundState() {
   return (
     <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4">
-      <div className="w-20 h-20 rounded-full bg-orange-50 flex items-center justify-center">
+      <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
         <ChefHat className="w-10 h-10 text-primary" />
       </div>
       <h2 className="text-2xl font-bold">Post Not Found</h2>
@@ -371,7 +371,7 @@ export default function BlogPostPage() {
         </div>
 
         {/* CTA */}
-        <div className="bg-orange-50 rounded-xl p-6 text-center border border-orange-200 mt-10">
+        <div className="bg-primary/10 rounded-xl p-6 text-center border border-primary/20 mt-10">
           <p className="font-semibold mb-2">Ready to upgrade your kitchen tools?</p>
           <p className="text-sm text-muted-foreground mb-4">Browse our collection of premium kitchen essentials.</p>
           <Button asChild className="bg-primary hover:bg-primary/90">

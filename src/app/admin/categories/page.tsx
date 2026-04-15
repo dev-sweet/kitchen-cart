@@ -192,7 +192,7 @@ export default function AdminCategoriesPage() {
                     <tr key={cat.id} className="border-b hover:bg-muted/30 transition-colors">
                       <td className="p-3">
                         <div className="flex items-center gap-3">
-                          <div className="h-10 w-10 rounded-lg bg-orange-50 flex items-center justify-center">
+                          <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
                             <Package className="h-5 w-5 text-primary" />
                           </div>
                           <div>

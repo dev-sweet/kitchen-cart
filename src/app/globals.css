@@ -41,7 +41,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-orange: #E65100;
+  --color-orange: #4DADE6;
   --color-cream: #FFFBF5;
   --color-charcoal: #1A1A1A;
   --color-orange-light: #FFF3E0;
@@ -56,7 +56,7 @@
   --card-foreground: #1A1A1A;
   --popover: #FFFFFF;
   --popover-foreground: #1A1A1A;
-  --primary: #E65100;
+  --primary: #4DADE6;
   --primary-foreground: #FFFFFF;
   --secondary: #FFF3E0;
   --secondary-foreground: #1A1A1A;
@@ -67,20 +67,20 @@
   --destructive: #DC2626;
   --border: #E0E0E0;
   --input: #E0E0E0;
-  --ring: #E65100;
-  --chart-1: #E65100;
+  --ring: #4DADE6;
+  --chart-1: #4DADE6;
   --chart-2: #FF8F00;
   --chart-3: #F57C00;
   --chart-4: #FB8C00;
   --chart-5: #FFA726;
   --sidebar: #FFFFFF;
   --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #E65100;
+  --sidebar-primary: #4DADE6;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #FFF3E0;
   --sidebar-accent-foreground: #1A1A1A;
   --sidebar-border: #E0E0E0;
-  --sidebar-ring: #E65100;
+  --sidebar-ring: #4DADE6;
 }
 
 @layer base {
@@ -180,7 +180,7 @@
   left: 0;
   width: 0;
   height: 1px;
-  background-color: #E65100;
+  background-color: #4DADE6;
   transition: width 0.3s ease;
 }
 
@@ -200,7 +200,7 @@
   left: 0;
   width: 0;
   height: 1px;
-  background-color: #E65100;
+  background-color: #4DADE6;
   transition: width 0.3s ease;
 }
 
@@ -210,7 +210,7 @@
 
 /* Rating stars */
 .star-filled {
-  color: #FFA000;
+  color: #4DADE6;
 }
 
 .star-empty {

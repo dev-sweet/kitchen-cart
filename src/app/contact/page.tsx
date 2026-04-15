@@ -43,7 +43,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-orange-50 to-orange-100 py-16">
+      <section className="bg-gradient-to-br from-primary/10 to-primary/20 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-lg text-muted-foreground max-w-xl mx-auto">
@@ -61,10 +61,10 @@ export default function ContactPage() {
               <p className="text-muted-foreground">Reach out through any of the channels below or fill out the contact form.</p>
 
               {[
-                { icon: Mail, label: "Email", value: "support@kitchencart.com" },
-                { icon: Phone, label: "Phone", value: "+1 (800) 123-4567" },
-                { icon: MapPin, label: "Address", value: "123 Kitchen St, Suite 100, New York, NY 10001" },
-                { icon: Clock, label: "Hours", value: "Mon-Fri: 9am-6pm EST" },
+                { icon: Mail, label: "Email", value: "contact@laventerprise.shop" },
+                { icon: Phone, label: "Phone", value: " +1-(240) 938-0601" },
+                { icon: MapPin, label: "Address", value: "4513 Hatties progress dr bowie md 20720" },
+                // { icon: Clock, label: "Hours", value: "Mon-Fri: 9am-6pm EST" },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-start gap-3">
                   <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -77,7 +77,7 @@ export default function ContactPage() {
                 </div>
               ))}
 
-              <Card className="p-4 bg-orange-50 border-orange-200">
+              <Card className="p-4 bg-primary/10 border-primary/20">
                 <p className="text-sm font-medium text-orange-800">Quick Response</p>
                 <p className="text-xs text-orange-600 mt-1">We typically respond within 24 hours during business days.</p>
               </Card>

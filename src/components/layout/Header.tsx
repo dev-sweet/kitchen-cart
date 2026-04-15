@@ -41,6 +41,7 @@ import {
   ClipboardList,
 } from "lucide-react";
 import CartDrawer from "./CartDrawer";
+import Image from "next/image";
 
 interface Category {
   id: string;
@@ -180,9 +181,8 @@ function SearchBar({
   return (
     <div
       ref={searchRef}
-      className={`overflow-hidden transition-all duration-300 ease-in-out ${
-        isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-      }`}
+      className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+        }`}
     >
       <div className="border-b border-border bg-white px-4 py-3">
         <form onSubmit={handleSubmit} className="relative max-w-2xl mx-auto">
@@ -287,17 +287,15 @@ function CategoriesDropdown({
       onMouseLeave={handleLeave}
     >
       <button
-        className={`flex items-center gap-1 text-sm font-medium transition-colors ${
-          isScrolled
-            ? "text-foreground hover:text-primary"
-            : "text-white/90 hover:text-white"
-        }`}
+        className={`flex items-center gap-1 text-sm font-medium transition-colors ${isScrolled
+          ? "text-foreground hover:text-primary"
+          : "text-slate-600 hover:text-primary"
+          }`}
       >
         Categories
         <ChevronDown
-          className={`h-3.5 w-3.5 transition-transform ${
-            open ? "rotate-180" : ""
-          }`}
+          className={`h-3.5 w-3.5 transition-transform ${open ? "rotate-180" : ""
+            }`}
         />
       </button>
 
@@ -313,7 +311,7 @@ function CategoriesDropdown({
                 key={cat.id}
                 href={`/shop?category=${cat.slug}`}
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-between px-3 py-2 text-sm text-foreground hover:bg-orange-50 hover:text-primary transition-colors"
+                className="flex items-center justify-between px-3 py-2 text-sm text-foreground hover:bg-primary/10 hover:text-primary transition-colors"
               >
                 <span>{cat.name}</span>
                 {cat._count && (
@@ -327,7 +325,7 @@ function CategoriesDropdown({
             <Link
               href="/shop"
               onClick={() => setOpen(false)}
-              className="flex items-center px-3 py-2 text-sm font-medium text-primary hover:bg-orange-50 transition-colors"
+              className="flex items-center px-3 py-2 text-sm font-medium text-primary hover:bg-primary/10 transition-colors"
             >
               View All Products
             </Link>
@@ -354,11 +352,10 @@ function MobileNavLink({
     <Link
       href={href}
       onClick={onClick}
-      className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${
-        active
-          ? "bg-primary/10 text-primary"
-          : "text-foreground hover:bg-muted"
-      }`}
+      className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${active
+        ? "bg-primary/10 text-primary"
+        : "text-foreground hover:bg-muted"
+        }`}
     >
       {children}
     </Link>
@@ -471,11 +468,10 @@ export default function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-          isScrolled
+        className={`sticky top-0 z-40 w-full transition-all duration-300 ${isScrolled
             ? "bg-white shadow-md"
-            : "bg-gradient-to-r from-[#E65100] to-[#FF8F00]"
-        }`}
+            : "bg-[#ffffff]"
+          }`}
       >
         {/* Announcement Bar */}
         <AnnouncementBar
@@ -495,28 +491,13 @@ export default function Header() {
                 aria-label="Open menu"
               >
                 <Menu
-                  className={`h-5 w-5 ${isScrolled ? "text-foreground" : "text-white"}`}
+                  className={`h-5 w-5 ${isScrolled ? "text-foreground" : "text-slate-600"}`}
                 />
               </button>
 
               {/* Logo */}
               <Link href="/" className="flex items-center gap-1.5 flex-shrink-0">
-                <div
-                  className={`flex items-center justify-center h-8 w-8 rounded-lg ${
-                    isScrolled ? "bg-primary" : "bg-white"
-                  }`}
-                >
-                  <ChefHat
-                    className={`h-5 w-5 ${isScrolled ? "text-white" : "text-primary"}`}
-                  />
-                </div>
-                <span
-                  className={`text-xl font-bold transition-colors ${
-                    isScrolled ? "text-primary" : "text-white"
-                  }`}
-                >
-                  Kitchen<span className="text-orange-300">Cart</span>
-                </span>
+                <Image src="/logo.png" alt="KitchenCart Logo" width={180} height={80} />
               </Link>
             </div>
 
@@ -526,15 +507,14 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    isActive(link.href)
-                      ? isScrolled
-                        ? "text-primary bg-primary/5"
-                        : "text-white bg-white/20"
-                      : isScrolled
-                      ? "text-foreground hover:text-primary hover:bg-muted/50"
-                      : "text-white/90 hover:text-white hover:bg-white/10"
-                  }`}
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${isActive(link.href)
+                    ? isScrolled
+                      ? "text-primary bg-primary/10"
+                      : "text-primary bg-primary/5"
+                    : isScrolled
+                      ? "text-slate-600 hover:text-primary hover:bg-slate-100"
+                      : "text-slate-500 hover:text-primary hover:bg-slate-50"
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -554,15 +534,14 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
-                    isActive(link.href)
-                      ? isScrolled
-                        ? "text-primary bg-primary/5"
-                        : "text-white bg-white/20"
-                      : isScrolled
-                      ? "text-foreground hover:text-primary hover:bg-muted/50"
-                      : "text-white/90 hover:text-white hover:bg-white/10"
-                  }`}
+                  className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${isActive(link.href)
+                    ? isScrolled
+                      ? "text-primary bg-primary/10"
+                      : "text-primary bg-primary/5"
+                    : isScrolled
+                      ? "text-slate-600 hover:text-primary hover:bg-slate-100"
+                      : "text-slate-500 hover:text-primary hover:bg-slate-50"
+                    }`}
                 >
                   {link.label}
                 </Link>
@@ -575,10 +554,10 @@ export default function Header() {
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
                 className={`relative flex items-center justify-center h-9 w-9 rounded-md transition-colors ${
-                  isScrolled
-                    ? "text-foreground hover:text-primary hover:bg-muted/50"
-                    : "text-white hover:bg-white/10"
-                } ${searchOpen ? "bg-white/20" : ""}`}
+                  searchOpen
+                    ? "text-primary bg-primary/10"
+                    : "text-slate-600 hover:text-primary hover:bg-primary/10"
+                }`}
                 aria-label="Toggle search"
               >
                 <Search className="h-5 w-5" />
@@ -588,9 +567,9 @@ export default function Header() {
               <Link
                 href="/account/wishlist"
                 className={`relative flex items-center justify-center h-9 w-9 rounded-md transition-colors ${
-                  isScrolled
-                    ? "text-foreground hover:text-primary hover:bg-muted/50"
-                    : "text-white hover:bg-white/10"
+                  isActive("/account/wishlist") || wishlistCount > 0
+                    ? "text-primary bg-primary/10"
+                    : "text-slate-600 hover:text-primary hover:bg-primary/10"
                 }`}
                 aria-label="Wishlist"
               >
@@ -605,11 +584,10 @@ export default function Header() {
               {/* Cart */}
               <button
                 onClick={openCart}
-                className={`relative flex items-center justify-center h-9 w-9 rounded-md transition-colors ${
-                  isScrolled
-                    ? "text-foreground hover:text-primary hover:bg-muted/50"
-                    : "text-white hover:bg-white/10"
-                }`}
+                className={`relative flex items-center justify-center h-9 w-9 rounded-md transition-colors ${isScrolled
+                  ? "text-foreground hover:text-primary hover:bg-muted/50"
+                  : "text-slate-600 hover:text-primary hover:bg-slate-100"
+                  }`}
                 aria-label="Shopping cart"
               >
                 <ShoppingCart className="h-5 w-5" />
@@ -624,11 +602,10 @@ export default function Header() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button
-                    className={`flex items-center justify-center h-9 w-9 rounded-md transition-colors ${
-                      isScrolled
-                        ? "text-foreground hover:text-primary hover:bg-muted/50"
-                        : "text-white hover:bg-white/10"
-                    }`}
+                    className={`flex items-center justify-center h-9 w-9 rounded-md transition-colors ${isScrolled
+                      ? "text-foreground hover:text-primary hover:bg-muted/50"
+                      : "text-slate-600 hover:text-primary hover:bg-slate-100"
+                      }`}
                     aria-label="User account"
                   >
                     <User className="h-5 w-5" />
@@ -725,7 +702,7 @@ export default function Header() {
                   <ChefHat className="h-5 w-5 text-white" />
                 </div>
                 <span className="text-xl font-bold text-primary">
-                  Kitchen<span className="text-orange-400">Cart</span>
+                  Kitchen<span className="text-primary/80">Cart</span>
                 </span>
               </Link>
             </SheetTitle>

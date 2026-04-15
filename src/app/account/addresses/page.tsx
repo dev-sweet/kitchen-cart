@@ -475,7 +475,7 @@ export default function AddressesPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Add New Address Card */}
           <Card
-            className="border-dashed border-2 cursor-pointer hover:border-primary/40 hover:bg-orange-50/30 transition-all group"
+            className="border-dashed border-2 cursor-pointer hover:border-primary/40 hover:bg-primary/5 transition-all group"
             onClick={openCreateDialog}
           >
             <CardContent className="flex flex-col items-center justify-center p-8 min-h-[200px]">

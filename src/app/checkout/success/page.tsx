@@ -214,7 +214,7 @@ export default function CheckoutSuccessPage() {
 
           <Card>
             <CardContent className="p-4 flex items-start gap-3">
-              <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <CreditCard className="w-5 h-5 text-primary" />
               </div>
               <div>
@@ -293,7 +293,7 @@ export default function CheckoutSuccessPage() {
         )}
 
         {/* What's Next */}
-        <Card className="text-left mb-8 bg-orange-50/50 border-orange-200">
+        <Card className="text-left mb-8 bg-primary/10/50 border-primary/20">
           <CardContent className="p-6">
             <h3 className="font-semibold text-lg mb-3">What happens next?</h3>
             <div className="space-y-3">

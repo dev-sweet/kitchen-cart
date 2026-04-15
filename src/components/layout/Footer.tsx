@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Mail, ChefHat, CheckCircle, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 /* ========== Social Media Icons (Inline SVGs) ========== */
 
@@ -148,14 +149,14 @@ function NewsletterColumn() {
                   setEmail(e.target.value);
                   if (status === "error") setStatus("idle");
                 }}
-                className="h-10 bg-white/5 border-white/10 text-white placeholder:text-[#9E9E9E] pl-10 pr-3 text-sm focus:border-[#E65100] focus:ring-[#E65100]/30"
+                className="h-10 bg-white/5 border-white/10 text-white placeholder:text-[#9E9E9E] pl-10 pr-3 text-sm focus:border-[#2a5fb5] focus:ring-[#2a5fb5]/30"
                 disabled={status === "loading"}
               />
             </div>
             <Button
               type="submit"
               disabled={status === "loading"}
-              className="h-10 px-5 bg-[#E65100] hover:bg-[#FF8F00] text-white text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="h-10 px-5 bg-[#1E51A4] hover:bg-[#1E51A4] text-white text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === "loading" ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -207,12 +208,7 @@ export default function Footer() {
           {/* 1. Brand Column */}
           <div className="md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 mb-4 group">
-              <div className="flex items-center justify-center h-9 w-9 rounded-lg bg-[#E65100] transition-colors group-hover:bg-[#FF8F00]">
-                <ChefHat className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-xl font-bold text-white">
-                Kitchen<span className="text-[#FF8F00]">Cart</span>
-              </span>
+             <Image className="w-52" src="/logo.png" alt="KitchenCart Logo" width={100} height={40} />
             </Link>
             <p className="text-[13px] text-[#9E9E9E] leading-relaxed mb-1">
               Everything for your kitchen
@@ -232,9 +228,9 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex items-center justify-center h-9 w-9 rounded-full bg-white/5 hover:bg-[#E65100]/15 transition-all duration-200 group/social"
+                  className="flex items-center justify-center h-9 w-9 rounded-full bg-white/5 hover:bg-[#4dade6]/15 transition-all duration-200 group/social"
                 >
-                  <Icon className="h-[20px] w-[20px] text-[#9E9E9E] group-hover/social:text-[#E65100] transition-colors duration-200" />
+                  <Icon className="h-[20px] w-[20px] text-[#9E9E9E] group-hover/social:text-[#4dade6] transition-colors duration-200" />
                 </a>
               ))}
             </div>

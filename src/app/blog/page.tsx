@@ -7,7 +7,7 @@ const blogPosts = [
     slug: "10-essential-baking-tools-every-home-baker-needs",
     title: "10 Essential Baking Tools Every Home Baker Needs",
     excerpt: "From measuring cups to silicone mats, discover the must-have tools that will transform your baking game and help you create professional-quality treats at home.",
-    image: "1486427944544-d2c246c4df8e",
+    image: "1709837167684-47d7ccf0ed89",
     author: "Sarah Chen",
     date: "Jan 15, 2025",
     readTime: "5 min read",
@@ -68,7 +68,7 @@ const blogPosts = [
 export default function BlogPage() {
   return (
     <div className="min-h-screen">
-      <section className="bg-gradient-to-br from-orange-50 to-orange-100 py-16">
+      <section className="bg-gradient-to-br from-primary/10 to-primary/20 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ChefHat className="h-12 w-12 text-primary mx-auto mb-4" />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">KitchenCart Blog</h1>

@@ -705,11 +705,14 @@ export default function ProductDetailPage() {
 
             <Separator />
 
-            {/* Description (short) */}
-            <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-              {product.description}
-            </p>
-
+<h3 className="text-xl font-bold mb-0">Product Details:</h3>
+           
+   <iframe
+  srcDoc={product?.description
+    ?.replace(/\\r\\n|\\r|\\n|\\t/g, "")
+    .replace(/\s+/g, " ")
+    .trim()}
+/>
             {/* Variant Selectors */}
             {Object.keys(groupedVariants).length > 0 &&
               Object.entries(groupedVariants).map(([variantName, variants]) => (

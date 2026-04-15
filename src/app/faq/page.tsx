@@ -78,7 +78,7 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen">
-      <section className="bg-gradient-to-br from-orange-50 to-orange-100 py-16">
+      <section className="bg-gradient-to-br from-primary/10 to-primary/20 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <HelpCircle className="h-12 w-12 text-primary mx-auto mb-4" />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
@@ -141,7 +141,7 @@ export default function FAQPage() {
           )}
 
           {/* Still need help */}
-          <div className="mt-12 bg-orange-50 rounded-xl p-8 text-center border border-orange-200">
+          <div className="mt-12 bg-primary/10 rounded-xl p-8 text-center border border-primary/20">
             <h3 className="text-lg font-semibold mb-2">Still have questions?</h3>
             <p className="text-sm text-muted-foreground mb-4">Our support team is here to help you with anything.</p>
             <Button asChild className="bg-primary hover:bg-primary/90">

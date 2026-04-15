@@ -127,7 +127,7 @@ export default function CartPage() {
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <Breadcrumb />
         <div className="flex flex-col items-center justify-center py-20 text-center">
-          <div className="w-32 h-32 rounded-full bg-orange-50 flex items-center justify-center mb-6">
+          <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center mb-6">
             <ShoppingCart className="w-16 h-16 text-primary" />
           </div>
           <h1 className="text-3xl font-bold mb-3">Your cart is empty</h1>
@@ -182,7 +182,7 @@ export default function CartPage() {
         <div className="lg:col-span-2 space-y-4">
           {/* Free Shipping Progress */}
           {mounted && subtotal < 50 && (
-            <Card className="border-orange-200 bg-orange-50/50">
+            <Card className="border-primary/20 bg-primary/10/50">
               <CardContent className="p-4">
                 <div className="flex items-center gap-3 mb-2">
                   <Truck className="w-5 h-5 text-primary flex-shrink-0" />
