@@ -341,6 +341,7 @@ function RecentlyViewed() {
     return [];
   });
 
+  console.log(items)
   if (items.length === 0) return null;
   return (
     <SectionWrap className="py-12 md:py-16">
