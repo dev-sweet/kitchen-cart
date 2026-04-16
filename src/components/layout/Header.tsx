@@ -173,7 +173,7 @@ function SearchBar({
       setShowResults(false);
       setQuery("");
       onClose();
-      router.push(`/products/${slug}`);
+      router.push(`/product/${slug}`);
     },
     [onClose, router]
   );

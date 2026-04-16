@@ -127,10 +127,13 @@ function NewsletterColumn() {
   return (
     <div>
       <FooterHeading>Stay in the loop</FooterHeading>
-      <p className="text-[14px] text-[#9E9E9E] mb-4 leading-relaxed">
+      <p className="text-[14px] text-[#9E9E9E] leading-relaxed py-0 my-0">
         Get recipes, deals &amp; new arrivals to your inbox
       </p>
+    <p className="text-[14px] text-[#9E9E9E] leading-relaxed my-2">contact@laventerprise.shop</p>
+     <p className="text-[14px] text-[#9E9E9E] leading-relaxed py-0 my-0">+1-(240) 938-0601
 
+</p>
       {status === "success" ? (
         <div className="flex items-center gap-2 text-green-400 text-sm mt-3">
           <CheckCircle className="h-4 w-4 flex-shrink-0" />
@@ -143,7 +146,7 @@ function NewsletterColumn() {
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#9E9E9E] pointer-events-none" />
               <Input
                 type="email"
-                placeholder="Your email address"
+                placeholder="Your email"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
