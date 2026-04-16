@@ -194,10 +194,10 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: FacebookIcon, href: "https://facebook.com/kitchencart", label: "Facebook" },
-    { icon: InstagramIcon, href: "https://instagram.com/kitchencart", label: "Instagram" },
-    { icon: TwitterIcon, href: "https://twitter.com/kitchencart", label: "Twitter" },
-    { icon: YoutubeIcon, href: "https://youtube.com/kitchencart", label: "YouTube" },
+    { icon: FacebookIcon, href: "https://facebook.com/LaventerPrise", label: "Facebook" },
+    { icon: InstagramIcon, href: "https://instagram.com/LaventerPrise", label: "Instagram" },
+    { icon: TwitterIcon, href: "https://twitter.com/LaventerPrise", label: "Twitter" },
+    { icon: YoutubeIcon, href: "https://youtube.com/LaventerPrise", label: "YouTube" },
   ];
 
   return (
@@ -208,7 +208,7 @@ export default function Footer() {
           {/* 1. Brand Column */}
           <div className="md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 mb-4 group">
-             <Image className="w-52" src="/logo.png" alt="KitchenCart Logo" width={100} height={40} />
+             <Image className="w-52" src="/logo.png" alt="LaventerPrise Logo" width={100} height={40} />
             </Link>
             <p className="text-[13px] text-[#9E9E9E] leading-relaxed mb-1">
               Everything for your kitchen
@@ -273,7 +273,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-[13px] text-[#9E9E9E]">
-            &copy; 2025 KitchenCart. All rights reserved.
+            &copy; 2025 LaventerPrise. All rights reserved.
           </p>
           <div className="flex items-center gap-2 flex-wrap justify-center">
             {["Visa", "Mastercard", "PayPal", "Stripe", "Apple Pay"].map(

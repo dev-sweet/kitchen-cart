@@ -35,7 +35,7 @@ export default function PrivacyPage() {
           <p className="text-muted-foreground leading-relaxed mb-4">We may update this privacy policy from time to time. Changes will be posted on this page with an updated revision date.</p>
 
           <h2 className="text-xl font-bold mt-8 mb-3">8. Contact Us</h2>
-          <p className="text-muted-foreground leading-relaxed mb-4">If you have any questions about our privacy practices, contact us at privacy@kitchencart.com or through our contact page.</p>
+          <p className="text-muted-foreground leading-relaxed mb-4">If you have any questions about our privacy practices, contact us at privacy@laventerprise.com or through our contact page.</p>
         </div>
       </section>
     </div>

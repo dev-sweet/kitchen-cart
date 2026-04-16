@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ChefHat, Eye, EyeOff, Loader2, ArrowLeft } from "lucide-react";
+import Image from "next/image";
 
 const registerSchema = z
   .object({
@@ -85,10 +86,7 @@ export default function RegisterPage() {
         {/* Branding */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2">
-            <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
-              <ChefHat className="h-7 w-7 text-white" />
-            </div>
-            <span className="text-2xl font-bold text-primary">KitchenCart</span>
+             <Image className="w-65" src="/logo.png" alt="LaventerPrise Logo" width={180} height={40} />
           </Link>
           <p className="text-muted-foreground mt-2">
             Create your account and start shopping

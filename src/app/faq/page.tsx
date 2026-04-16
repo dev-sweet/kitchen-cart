@@ -31,7 +31,7 @@ const faqs = [
     items: [
       { q: "What payment methods do you accept?", a: "We accept Cash on Delivery (COD), credit/debit cards (Visa, Mastercard, American Express), PayPal, and Apple Pay. All online payments are securely processed." },
       { q: "Is Cash on Delivery available?", a: "Yes! Cash on Delivery (COD) is our most popular payment method. You pay in cash when your order arrives at your doorstep. No advance payment required." },
-      { q: "Do you offer discounts for bulk orders?", a: "Yes, we offer special pricing for bulk orders of 10+ items. Contact our sales team at bulk@kitchencart.com for a custom quote." },
+      { q: "Do you offer discounts for bulk orders?", a: "Yes, we offer special pricing for bulk orders of 10+ items. Contact our sales team at bulk@laventerprise.com for a custom quote." },
       { q: "How do I apply a coupon code?", a: "Enter your coupon code in the cart page or checkout page in the 'Coupon Code' field. The discount will be applied to your order total automatically." },
     ],
   },
