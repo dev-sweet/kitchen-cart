@@ -497,7 +497,7 @@ export default function Header() {
 
               {/* Logo */}
               <Link href="/" className="flex items-center gap-1.5 flex-shrink-0">
-                <Image src="/logo.png" alt="KitchenCart Logo" width={180} height={80} />
+                <Image className="md:w-full w-1/2" src="/logo.png" alt="LaventerPrise Logo" width={180} height={80} />
               </Link>
             </div>
 
@@ -698,12 +698,7 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-1.5"
               >
-                <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-primary">
-                  <ChefHat className="h-5 w-5 text-white" />
-                </div>
-                <span className="text-xl font-bold text-primary">
-                  Kitchen<span className="text-primary/80">Cart</span>
-                </span>
+              <Image src="/logo.png" alt="LaventerPrise Logo" width={180} height={80} />
               </Link>
             </SheetTitle>
             <SheetDescription className="sr-only">Navigation menu</SheetDescription>
