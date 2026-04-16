@@ -112,7 +112,7 @@ export default function AccountPage() {
 
   const handleSignOut = async () => {
     toast.success("Signed out successfully");
-    await signOut({ callbackUrl: "/" });
+    await signOut({ callbackUrl: "https://laventerprise.shop/" });
   };
 
   if (status === "loading" || loading) {

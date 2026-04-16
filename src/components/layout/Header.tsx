@@ -463,7 +463,7 @@ export default function Header() {
   };
 
   const handleSignOut = async () => {
-    await signOut({ callbackUrl: "/" });
+    await signOut({ callbackUrl: "https://laventerprise.shop/" });
   };
 
   const userRole = (session?.user as any)?.role;
