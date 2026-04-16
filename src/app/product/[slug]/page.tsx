@@ -708,6 +708,7 @@ export default function ProductDetailPage() {
 <h3 className="text-xl font-bold mb-0">Product Details:</h3>
            
    <iframe
+   className="w-full border-0 overflow-hidden h-40"
   srcDoc={product?.description
     ?.replace(/\\r\\n|\\r|\\n|\\t/g, "")
     .replace(/\s+/g, " ")
@@ -915,14 +916,13 @@ export default function ProductDetailPage() {
 
             <TabsContent value="description" className="mt-6">
               <div className="max-w-3xl">
-                <div className="prose prose-sm max-w-none text-muted-foreground leading-relaxed">
-                  {product.description ? (
-                    product.description.split("\n").map((paragraph, idx) => (
-                      <p key={idx} className="mb-4">
-                        {paragraph}
-                      </p>
-                    ))
-                  ) : (
+                <div className="prose prose-sm max-w-none text-muted-foreground leading-relaxed h-auto overflow-hidden">
+                  {product.description ?  <iframe className="w-full border-0 overflow-hidden h-40"
+  srcDoc={product?.description
+    ?.replace(/\\r\\n|\\r|\\n|\\t/g, "")
+    .replace(/\s+/g, " ")
+    .trim()}
+/> : (
                     <p className="text-muted-foreground">
                       No description available for this product.
                     </p>
