@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { ChefHat, Eye, EyeOff, Loader2, ArrowLeft } from "lucide-react";
+import { Eye, EyeOff, Loader2, ArrowLeft } from "lucide-react";
 import Image from "next/image";
 
 const loginSchema = z.object({
@@ -48,7 +48,23 @@ export default function LoginPage() {
         toast.error("Invalid email or password. Please try again.");
       } else {
         toast.success("Welcome back! Redirecting...");
-        router.push("/");
+        if (typeof window !== "undefined") {
+          const params = new URLSearchParams(window.location.search);
+          const callbackUrl = params.get("callbackUrl");
+          if (callbackUrl) {
+            router.push(callbackUrl);
+          } else {
+            // Fallback: router.back() goes back if we arrived from our site without a callbackUrl
+            const isOurSite = document.referrer.startsWith(window.location.origin);
+            if (isOurSite && window.history.length > 2) {
+              router.back();
+            } else {
+              router.push("/");
+            }
+          }
+        } else {
+          router.push("/");
+        }
         router.refresh();
       }
     } catch {

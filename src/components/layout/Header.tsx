@@ -181,8 +181,11 @@ function SearchBar({
   return (
     <div
       ref={searchRef}
-      className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-        }`}
+      className={`transition-all duration-300 ease-in-out ${
+        isOpen 
+          ? `max-h-[800px] opacity-100 ${showResults ? "overflow-visible" : "overflow-hidden"}` 
+          : "max-h-0 opacity-0 overflow-hidden"
+      }`}
     >
       <div className="border-b border-border bg-white px-4 py-3">
         <form onSubmit={handleSubmit} className="relative max-w-2xl mx-auto">
@@ -469,8 +472,8 @@ export default function Header() {
     <>
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${isScrolled
-            ? "bg-white shadow-md"
-            : "bg-[#ffffff]"
+          ? "bg-white shadow-md"
+          : "bg-[#ffffff]"
           }`}
       >
         {/* Announcement Bar */}
@@ -553,11 +556,10 @@ export default function Header() {
               {/* Search Toggle */}
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
-                className={`relative flex items-center justify-center h-9 w-9 rounded-md transition-colors ${
-                  searchOpen
+                className={`relative flex items-center justify-center h-9 w-9 rounded-md transition-colors ${searchOpen
                     ? "text-primary bg-primary/10"
                     : "text-slate-600 hover:text-primary hover:bg-primary/10"
-                }`}
+                  }`}
                 aria-label="Toggle search"
               >
                 <Search className="h-5 w-5" />
@@ -566,11 +568,10 @@ export default function Header() {
               {/* Wishlist */}
               <Link
                 href="/account/wishlist"
-                className={`relative flex items-center justify-center h-9 w-9 rounded-md transition-colors ${
-                  isActive("/account/wishlist") || wishlistCount > 0
+                className={`relative flex items-center justify-center h-9 w-9 rounded-md transition-colors ${isActive("/account/wishlist") || wishlistCount > 0
                     ? "text-primary bg-primary/10"
                     : "text-slate-600 hover:text-primary hover:bg-primary/10"
-                }`}
+                  }`}
                 aria-label="Wishlist"
               >
                 <Heart className="h-5 w-5" />
@@ -665,7 +666,7 @@ export default function Header() {
                   ) : (
                     <DropdownMenuGroup>
                       <DropdownMenuItem asChild>
-                        <Link href="/auth/login" className="cursor-pointer">
+                        <Link href={`/auth/login?callbackUrl=${encodeURIComponent(pathname)}`} className="cursor-pointer">
                           <User className="mr-2 h-4 w-4" />
                           Login
                         </Link>
@@ -698,7 +699,7 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center gap-1.5"
               >
-              <Image src="/logo.png" alt="LaventerPrise Logo" width={180} height={80} />
+                <Image src="/logo.png" alt="LaventerPrise Logo" width={180} height={80} />
               </Link>
             </SheetTitle>
             <SheetDescription className="sr-only">Navigation menu</SheetDescription>

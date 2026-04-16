@@ -277,7 +277,7 @@ export default function CheckoutPage() {
             </p>
             <Button
               size="lg"
-              onClick={() => signIn('credentials', { callbackUrl: '/checkout' })}
+              onClick={() => router.push('/auth/login')}
               className="bg-primary hover:bg-primary/90 text-white w-full mb-3"
             >
               Sign In to Continue
