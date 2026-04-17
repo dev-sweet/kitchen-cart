@@ -317,11 +317,11 @@ function CategoriesDropdown({
                 className="flex items-center justify-between px-3 py-2 text-sm text-foreground hover:bg-primary/10 hover:text-primary transition-colors"
               >
                 <span>{cat.name}</span>
-                {cat._count && (
+                {/* {cat._count && (
                   <span className="text-xs text-muted-foreground">
                     {cat._count.products}
                   </span>
-                )}
+                )} */}
               </Link>
             ))}
             <Separator className="my-1" />
@@ -735,11 +735,11 @@ export default function Header() {
                       className="flex items-center justify-between px-4 py-2.5 text-sm text-foreground hover:bg-muted rounded-lg transition-colors"
                     >
                       <span>{cat.name}</span>
-                      {cat._count && (
+                      {/* {cat._count && (
                         <span className="text-xs text-muted-foreground">
                           {cat._count.products}
                         </span>
-                      )}
+                      )} */}
                     </Link>
                   ))}
                 </>

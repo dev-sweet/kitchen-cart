@@ -155,7 +155,7 @@ function CategoryGrid({ categories }: { categories: Category[] }) {
               <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/10 transition-colors"><Icon className="w-7 h-7 md:w-8 md:h-8 text-primary" /></div>
               <div>
                 <h3 className="font-semibold text-sm md:text-base group-hover:text-primary transition-colors">{cat.name}</h3>
-                <p className="text-xs text-muted-foreground mt-0.5">{cat._count.products} products</p>
+                {/* <p className="text-xs text-muted-foreground mt-0.5">{cat._count.products} products</p> */}
               </div>
             </Link>
           );

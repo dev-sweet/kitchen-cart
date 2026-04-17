@@ -141,9 +141,9 @@ function FilterPanel({
                     <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors flex-1">
                       {cat.name}
                     </span>
-                    <span className="text-xs text-muted-foreground">
+                    {/* <span className="text-xs text-muted-foreground">
                       ({cat._count?.products || 0})
-                    </span>
+                    </span> */}
                   </label>
                 ))}
           </div>
@@ -865,7 +865,8 @@ export default function ShopPage() {
                 {/* Pagination */}
                 {totalPages > 1 && (
                   <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-sm text-muted-foreground">
+                  <p></p>
+                    {/* <p className="text-sm text-muted-foreground">
                       Showing{" "}
                       <span className="font-medium text-foreground">
                         {(currentPage - 1) * ITEMS_PER_PAGE + 1}
@@ -882,7 +883,7 @@ export default function ShopPage() {
                         {totalProducts}
                       </span>{" "}
                       products
-                    </p>
+                    </p> */}
 
                     <div className="flex items-center gap-1">
                       <Button
